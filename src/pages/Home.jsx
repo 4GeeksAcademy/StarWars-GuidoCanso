@@ -1,16 +1,29 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { useEffect } from "react";
+import { getPlanets } from "../api/swapi";
+import { useFetch } from "../hooks/useFetch";
+import CardPlanet from "../components/CardPlanet";
 
-export const Home = () => {
+const Home = () => {
+  const { data: planets, loading: loadingPlanets } = useFetch(getPlanets, null);
 
-  const {store, dispatch} =useGlobalReducer()
+  return (
+    <>
+      <h1>Star Wars Explorer</h1>
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-		</div>
-	);
-}; 
+      <h2>Planets</h2>
+      <div className="row">
+        {loadingPlanets ? (
+          <p>Loading planets ....</p>
+        ) : (
+          planets.map((planet, index) => (
+            <div className="col-md-4 mb-4" key={index}>
+              <CardPlanet planet={planet} uid={index + 1} />
+            </div>
+          ))
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Home;

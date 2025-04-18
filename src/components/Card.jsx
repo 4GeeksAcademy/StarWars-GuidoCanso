@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 
-const CardPlanet = ({ planet, uid }) => {
-  console.log(planet);
+const Card = ({ title, uid, type }) => {
+  console.log(title);
 
   const { state, dispatch } = useGlobalContext();
 
@@ -12,7 +12,7 @@ const CardPlanet = ({ planet, uid }) => {
     if (isFavorite) {
       dispatch({ type: "REMOVE_FAVORITE", payload: { uid } });
     } else {
-      dispatch({ type: "ADD_FAVORITE", payload: { uid, name: planet.name } });
+      dispatch({ type: "ADD_FAVORITE", payload: { uid, name: title.name } });
     }
   };
 
@@ -21,13 +21,13 @@ const CardPlanet = ({ planet, uid }) => {
       <img
         src="https://placehold.co/400x200"
         className="card-img-top"
-        alt={planet.name}
+        alt={title.name}
       />
       <div className="card-body">
-        <h5 className="card-text">{planet.name}</h5>
+        <h5 className="card-text">{title.name}</h5>
       </div>
       <div className="d-flex justify-content-between">
-        <Link to={`/planet/${uid}`} className="btn btn-primary">
+        <Link to={`/${type}/${uid}`} className="btn btn-primary">
           Learn More
         </Link>
         <button
@@ -41,4 +41,4 @@ const CardPlanet = ({ planet, uid }) => {
   );
 };
 
-export default CardPlanet;
+export default Card;

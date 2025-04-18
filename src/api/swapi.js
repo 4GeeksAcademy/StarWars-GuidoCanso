@@ -16,3 +16,20 @@ export const getPlanetById = async (id) => {
   const data = await response.json();
   return data.result;
 };
+
+export const getCharacters = async () => {
+  // https://www.swapi.tech/api/people
+  const response = await fetch(`${BASE_URL}/people`);
+  if (!response.ok) throw new Error("Error fetching Characters");
+  const data = await response.json();
+  // {message: '', results: []}
+  return data.results;
+};
+
+export const getCharacterById = async (id) => {
+  // https://www.swapi.tech/api/people/12
+  const response = await fetch(`${BASE_URL}/people/${id}`);
+  if (!response.ok) throw new Error("Error fetching Characters");
+  const data = await response.json();
+  return data.result;
+};

@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { getPlanets } from "../api/swapi";
+import { getPlanets,getCharacters } from "../api/swapi";
 import { useFetch } from "../hooks/useFetch";
-import CardPlanet from "../components/CardPlanet";
+import Card from "../components/Card";
 
 const Home = () => {
   const { data: planets, loading: loadingPlanets } = useFetch(getPlanets, null);
+  const { data: characters, loading: loadingCharacters } = useFetch(getCharacters, null);
 
   return (
     <>
@@ -17,7 +18,19 @@ const Home = () => {
         ) : (
           planets.map((planet, index) => (
             <div className="col-md-4 mb-4" key={index}>
-              <CardPlanet planet={planet} uid={index + 1} />
+              <Card type={"planets"}title={planet} uid={index + 1} />
+            </div>
+          ))
+        )}
+      </div>
+      <h2>Characters</h2>
+      <div className="row">
+        {loadingCharacters ? (
+          <p>Loading Characters ....</p>
+        ) : (
+          characters.map((character, index) => (
+            <div className="col-md-4 mb-4" key={index}>
+              <Card type={"people"} title={character} uid={index + 1} />
             </div>
           ))
         )}

@@ -17,13 +17,6 @@ const Card = ({ title, uid, type }) => {
     }
   };
 
-  const handleClick = () => {
-    if (type === "planet") {
-      navigate(`/planets/${uid}`);
-    } else if (type === "people") {
-      navigate(`/people/${uid}`);
-    }
-  }
 
   return (
     <div className="card">
@@ -36,9 +29,9 @@ const Card = ({ title, uid, type }) => {
         <h5 className="card-text">{title.name}</h5>
       </div>
       <div className="d-flex justify-content-between">
-        <button onClick={handleClick} className="btn btn-primary">
+      <Link to={`/planet/${uid}`} className="btn btn-primary">
           Learn More
-        </button>
+        </Link>
         <button
           className={`favorite-btn ${isFavorite ? "active" : ""}`}
           onClick={handleFavorite}

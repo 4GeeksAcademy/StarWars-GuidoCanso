@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
+
 
 const Card = ({ title, uid, type }) => {
   console.log(title);
-
+  const navigate = useNavigate();
   const { state, dispatch } = useGlobalContext();
 
   const isFavorite = state.favorites.some((fav) => fav.uid == uid);
@@ -16,6 +17,14 @@ const Card = ({ title, uid, type }) => {
     }
   };
 
+  const handleClick = () => {
+    if (type === "planet") {
+      navigate(`/planets/${uid}`);
+    } else if (type === "people") {
+      navigate(`/people/${uid}`);
+    }
+  }
+
   return (
     <div className="card">
       <img
@@ -27,9 +36,9 @@ const Card = ({ title, uid, type }) => {
         <h5 className="card-text">{title.name}</h5>
       </div>
       <div className="d-flex justify-content-between">
-        <Link to={`/${type}/${uid}`} className="btn btn-primary">
+        <button onClick={handleClick} className="btn btn-primary">
           Learn More
-        </Link>
+        </button>
         <button
           className={`favorite-btn ${isFavorite ? "active" : ""}`}
           onClick={handleFavorite}

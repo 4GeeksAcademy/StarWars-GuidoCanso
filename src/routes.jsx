@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
-import { Single } from "./pages/Single";
-import { Demo } from "./pages/Demo";
+import { PlanetDetail } from "./pages/PlanetDetail";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,8 +22,12 @@ export const router = createBrowserRouter(
 
         {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
         <Route path= "/" element={<Home />} />
-        <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/demo" element={<Demo />} />
+        <Route path="/planets/:id" element={<PlanetDetail />} />
+        {/* <Route path="/people/:id" element={<CharacterDetail />} /> */}
+
+        {/* Fallback Route: This will be displayed if no other routes match. */}
+        <Route path="*" element={<h1>Not found!</h1>} />
+
       </Route>
     )
 );

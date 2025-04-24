@@ -30,7 +30,7 @@ const Home = () => {
         ) : (
           characters.map((character, index) => (
             <div className="col-md-4 mb-4" key={index}>
-              <Card type={"people"} title={character} uid={index + 1} />
+              <Card type={"characters"} title={character} uid={index + 1} />
             </div>
           ))
         )}

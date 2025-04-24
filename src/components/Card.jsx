@@ -21,7 +21,7 @@ const Card = ({ title, uid, type }) => {
   return (
     <div className="card">
       <img
-        src="https://placehold.co/400x200"
+        src={`https://raw.githubusercontent.com/tbone849/star-wars-guide/refs/heads/master/build/assets/img/${type}/${uid}.jpg`}
         className="card-img-top"
         alt={title.name}
       />
@@ -29,7 +29,7 @@ const Card = ({ title, uid, type }) => {
         <h5 className="card-text">{title.name}</h5>
       </div>
       <div className="d-flex justify-content-between">
-      <Link to={`/planet/${uid}`} className="btn btn-primary">
+      <Link to={`/${type == "planets"? "planets":"characters"}/${uid}`} className="btn btn-primary">
           Learn More
         </Link>
         <button

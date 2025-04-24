@@ -15,17 +15,17 @@ const PlanetDetail = () => {
   return (
     <div className="container mt-5">
       <div className="row">
-        {/* Imagen a la izquierda */}
+        
         <div className="col-md-6 text-center">
           <img
-            src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+            src={`https://raw.githubusercontent.com/tbone849/star-wars-guide/refs/heads/master/build/assets/img/planets/${id}.jpg`}
             alt={name}
             className="img-fluid"
             style={{ maxHeight: "400px", objectFit: "cover" }}
           />
         </div>
 
-        {/* Texto a la derecha */}
+        
         <div className="col-md-6">
           <h1>{name}</h1>
           <p>
